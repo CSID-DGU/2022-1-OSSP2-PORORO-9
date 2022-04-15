@@ -21,6 +21,7 @@ public class CustomActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.img_back_cus2).fitCenter().into(imgBack);
 
         PuppyView puppyView = new PuppyView(layBack, this);
+        puppyView.setColor();
 
         imgBack.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override

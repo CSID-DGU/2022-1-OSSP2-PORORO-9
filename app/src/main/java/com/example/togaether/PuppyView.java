@@ -17,7 +17,7 @@ public class PuppyView {
     LayoutInflater layoutInflater;
     AppCompatActivity act;
     View puppyView, puppy;
-    ImageView imgFace;
+    ImageView imgFace, imgBody, imgNose, imgMouth, imgEyeLeft, imgEyeRight, imgEarLeft, imgEarRight;
     int w, h;
 
     PuppyView(ViewGroup lay, AppCompatActivity act) {
@@ -39,6 +39,13 @@ public class PuppyView {
         });
 
         imgFace = (ImageView) puppyView.findViewById(R.id.img_face1);
+        imgBody = (ImageView) puppyView.findViewById(R.id.img_body);
+        imgMouth = (ImageView) puppyView.findViewById(R.id.img_mouth);
+        imgNose = (ImageView) puppyView.findViewById(R.id.img_nose);
+        imgEarLeft = (ImageView) puppyView.findViewById(R.id.img_ear_left);
+        imgEarRight = (ImageView) puppyView.findViewById(R.id.img_ear_right);
+        imgEyeLeft = (ImageView) puppyView.findViewById(R.id.img_eye_left);
+        imgEyeRight = (ImageView) puppyView.findViewById(R.id.img_eye_right);
     }
     public void setPosition(int x, int y) {
         puppy.setTranslationX((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, x, act.getResources().getDisplayMetrics()) - w/2); //puppy.findViewById(R.id.lay_puppy).
@@ -49,6 +56,7 @@ public class PuppyView {
         puppy.setTranslationY(y - h/2);
     }
     public void setColor() {
-        imgFace.setColorFilter(Color.parseColor("#e28743"), PorterDuff.Mode.SRC_IN);
+        imgFace.setColorFilter(Color.parseColor("#e28743"), PorterDuff.Mode.MULTIPLY);
+        imgBody.setColorFilter(Color.parseColor("#e28743"), PorterDuff.Mode.MULTIPLY);
     }
 }
