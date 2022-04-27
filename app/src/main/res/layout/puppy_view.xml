@@ -25,11 +25,27 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
+        android:id="@+id/img_face3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:translationY="0dp"
+        app:srcCompat="@drawable/img_cus_none"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
         android:id="@+id/img_mouth"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:translationY="20dp"
         app:srcCompat="@drawable/img_cus_mouth_1"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/img_face2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:translationY="15dp"
+        app:srcCompat="@drawable/img_cus_none"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -60,6 +76,25 @@
         app:srcCompat="@drawable/img_cus_eye_1"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
+
+    <ImageView
+        android:id="@+id/img_eyebrow_left"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:translationY="-12dp"
+        android:translationX="-20dp"
+        app:srcCompat="@drawable/img_cus_none"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/img_eyebrow_right"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:translationY="-12dp"
+        android:translationX="20dp"
+        app:srcCompat="@drawable/img_cus_none"
+        android:scaleX="-1"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/img_ear_left"

@@ -12,6 +12,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         PuppyView puppyView = new PuppyView(findViewById(R.id.lay_main), this);
         puppyView.setPosition(100,0);
-        puppyView.setColor();
     }
 }
