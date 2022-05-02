@@ -1,4 +1,4 @@
-package com.example.togather;
+package com.example.togaether;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +10,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.togather.adapters.ChatAdapter;
-import com.example.togather.helpers.SendMessageInBg;
-import com.example.togather.interfaces.BotReply;
-import com.example.togather.models.Message;
+import com.example.togaether.ChatAdapter;
+import com.example.togaether.SendMessageInBg;
+import com.example.togaether.BotReply;
+import com.example.togaether.Message;
 import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class chatbot extends AppCompatActivity implements BotReply {
+public class Chatbot extends AppCompatActivity implements BotReply {
 
     RecyclerView chatView;
     ChatAdapter chatAdapter;
@@ -67,7 +67,7 @@ public class chatbot extends AppCompatActivity implements BotReply {
                     Objects.requireNonNull(chatView.getLayoutManager())
                             .scrollToPosition(messageList.size() - 1);
                 } else {
-                    Toast.makeText(chatbot.this, "Please enter text!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Chatbot.this, "Please enter text!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
