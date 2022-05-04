@@ -24,7 +24,6 @@ public class Schedule {
 		
 		//변경해야 할 내용
 		//activity Code 입력
-		//랜덤 확률 가중치 보정
 		//같은 날짜에 같은 일정 나오게 --> 체크
 		//activity code 구현한 뒤 생성자로 변경하기
 		
@@ -38,10 +37,14 @@ public class Schedule {
 				2011,2012,2013};
 		
 		for(i=16; i<41; i++) {
-			Random r=new Random();
-			int whichOne = r.nextInt(2);
-			//짧은 일정과 긴 일정 중 어떤 것 할 지 랜덤으로 결정 (가중치 보정 필요)
-			//0은 shortActicity, 1은 longActivity
+			int whichOne=0;
+			double n = Math.random();
+			if(n<0.3) { //30퍼센트의 확률로 short Act 발생
+				whichOne=0;
+			}
+			else { //나머지의 경우 long Act
+				whichOne=1;
+			}
 			
 			if (a!=shortAct && b!=longAct) {
 				if (whichOne==0) { //a(short) 증가
