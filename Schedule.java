@@ -22,7 +22,6 @@ public class Schedule {
 			this.schedule[i].setActivityCode(0); //잠자기
 		}
 		
-		//activity Code 입력
 		//같은 날짜에 같은 일정 나오게 --> 체크
 		//activity code 구현한 뒤 생성자로 변경하기
 		
