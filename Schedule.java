@@ -22,16 +22,34 @@ public class Schedule {
 			this.schedule[i].setActivityCode(0); //잠자기
 		}
 		
-		//변경해야 할 내용
 		//activity Code 입력
 		//같은 날짜에 같은 일정 나오게 --> 체크
 		//activity code 구현한 뒤 생성자로 변경하기
 		
 		int a=0, b=0; //a는 짧은 일정(일단은 최대가 11이라고 가정), b는 긴 일정
 		//short은 30분 long은 1시간으로 계산 --> 추후 30분 단위로 변경 가능
-		int shortAct = ((int)Math.random()*6)*2+1; //1~11까지의 홀수 정수
-		int longAct = (29-shortAct)/2;
-		//하루 중 발생할 짧은 일정과 긴 일정의 횟수 (가중치 보정 필요)
+		
+		int sa=1, la=0; //short는 1 이상
+		double r;
+		for (int x=0;x<28;x++) { //short 최소 1회를 빼고 28개
+			r = Math.random();
+			if(r<0.3) { //30퍼센트의 확률로 short Act 발생
+				sa++;
+			}
+			else { //나머지의 경우 long Act
+				la++;
+				x++; //30분 2번 사용
+			}
+		}
+		if(sa>11) { //short가 존재하는 short activity 보다 많이 발생할 경우
+			sa=11;
+			la=(29-sa)/2;
+		} //11로 값 조정
+		if(sa%2==0) { //short act가 짝수번 발생할 경우
+			sa++;
+			la=(29-sa)/2;
+		} //홀수번으로 값 조정
+				
 		int SAC[] = {1000,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010};
 		int LAC[] = {2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,
 				2011,2012,2013};
@@ -46,7 +64,7 @@ public class Schedule {
 				whichOne=1;
 			}
 			
-			if (a!=shortAct && b!=longAct) {
+			if (a!=sa && b!=la) {
 				if (whichOne==0) { //a(short) 증가
 					this.schedule[i].setStartTime(date);
 					date.add(Calendar.MINUTE, 30*(i+1));
@@ -66,7 +84,7 @@ public class Schedule {
 					b++;
 				}
 			}
-			else if (a==shortAct) { //a=shortAct 하루 중 정해진 짧은 일정을 전부 다 했을 떄
+			else if (a==sa) { //a=shortAct 하루 중 정해진 짧은 일정을 전부 다 했을 떄
 				this.schedule[i].setStartTime(date);
 				date.add(Calendar.MINUTE, 30*(i+1));
 				this.schedule[i].setEndTime(date);
