@@ -22,8 +22,7 @@ public class Schedule {
 			this.schedule[i].setActivityCode(0); //잠자기
 		}
 		
-		//같은 날짜에 같은 일정 나오게 --> 체크
-		//activity code 구현한 뒤 생성자로 변경하기
+		//같은 날짜에 같은 일정 --> 하루에 한번씩 발생
 		
 		int a=0, b=0; //a는 짧은 일정(일단은 최대가 11이라고 가정), b는 긴 일정
 		//short은 30분 long은 1시간으로 계산 --> 추후 30분 단위로 변경 가능
@@ -69,7 +68,15 @@ public class Schedule {
 					date.add(Calendar.MINUTE, 30*(i+1));
 					this.schedule[i].setEndTime(date);
 					//SAC 중에 랜덤으로 하나 뽑아서 set, 한번 나온 코드는 다시 못 나오게
-					//ac 코드 완성되면 생성자로 합치기
+					
+					int j = (int) (Math.random() * 11);
+					while (SAC[j]==0) {
+						j = (int) (Math.random() * 11);
+					}
+					int ac = SAC[j];
+					SAC[j] = 0;
+					this.schedule[i].setActivityCode(ac);
+					
 					a++;
 				}
 				else { //b (long) 증가
@@ -80,6 +87,15 @@ public class Schedule {
 					this.schedule[i].setStartTime(date);
 					date.add(Calendar.MINUTE, 30*(i+1));
 					this.schedule[i].setEndTime(date);
+					
+					int j = (int) (Math.random() * 14);
+					while (LAC[j]==0) {
+						j = (int) (Math.random() * 14);
+					}
+					int ac = LAC[j];
+					LAC[j] = 0;
+					this.schedule[i].setActivityCode(ac);
+					
 					b++;
 				}
 			}
@@ -91,12 +107,26 @@ public class Schedule {
 				this.schedule[i].setStartTime(date);
 				date.add(Calendar.MINUTE, 30*(i+1));
 				this.schedule[i].setEndTime(date);
+				int j = (int) (Math.random() * 14);
+				while (LAC[j]==0) {
+					j = (int) (Math.random() * 14);
+				}
+				int ac = LAC[j];
+				LAC[j] = 0;
+				this.schedule[i].setActivityCode(ac);
 				b++;
 			} //긴 일정만 실행
 			else { //b==longAct 하루 중 정해진 긴 일정을 전부 다 했을 떄
 				this.schedule[i].setStartTime(date);
 				date.add(Calendar.MINUTE, 30*(i+1));
 				this.schedule[i].setEndTime(date);
+				int j = (int) (Math.random() * 11);
+				while (SAC[j]==0) {
+					j = (int) (Math.random() * 11);
+				}
+				int ac = SAC[j];
+				SAC[j] = 0;
+				this.schedule[i].setActivityCode(ac);
 				a++;
 			} //짧은 일정 실행
 		}
