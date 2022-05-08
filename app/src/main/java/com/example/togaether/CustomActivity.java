@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 public class CustomActivity extends AppCompatActivity {
-    Fragment[] fragArr = new Fragment[9];
+    private Fragment[] fragArr = new Fragment[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class CustomActivity extends AppCompatActivity {
         fragArr[6] = new FragCus(puppyView,CustomType.EAR_L); // fragment type 2
         fragArr[7] = new FragCus(puppyView,CustomType.EYEBROW_L); // fragment type 2
         fragArr[8] = new FragCus(puppyView,CustomType.BODY);
+        fragArr[9] = new FragCusInfo(puppyView);
 
         getSupportFragmentManager().beginTransaction().add(R.id.lay_cusframe, fragArr[0]).commit();
         TabLayout layTabs = (TabLayout) findViewById(R.id.lay_tabs);

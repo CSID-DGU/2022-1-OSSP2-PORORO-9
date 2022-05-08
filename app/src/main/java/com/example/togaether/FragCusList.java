@@ -32,9 +32,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragCusList extends Fragment {
 
-    PuppyView puppyView;
-    CustomType t, subt;
-    int selected;
+    private PuppyView puppyView;
+    private CustomType t, subt;
+    private int selected;
     public FragCusList(PuppyView puppyView, CustomType t, int selected) {
         this.puppyView = puppyView;
         this.t = t;

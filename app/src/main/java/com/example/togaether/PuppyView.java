@@ -34,9 +34,15 @@ import com.bumptech.glide.signature.ObjectKey;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import jp.wasabeef.glide.transformations.MaskTransformation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PuppyView {
     LayoutInflater layoutInflater;
@@ -44,6 +50,7 @@ public class PuppyView {
     View puppyView, puppy;
 
     HashMap<CustomType, ImageView> imgMap = new HashMap<>();
+    ImageView eyeWL, eyeWR;
     HashMap<CustomType, PartXY> xyMap = new HashMap<>();
     HashMap<CustomType, Integer> dyMap = new HashMap<>();
     HashMap<CustomType, Integer> distMap = new HashMap<>();
@@ -55,6 +62,16 @@ public class PuppyView {
     ViewGroup lay;
 
     PuppyView(ViewGroup lay, AppCompatActivity act) {
+        setInit(lay, act);
+        setInitCustom();
+    }
+
+    PuppyView(ViewGroup lay, AppCompatActivity act, int id) {
+        setInit(lay, act);
+        setInitCustom(id);
+    }
+
+    public void setInit(ViewGroup lay, AppCompatActivity act) {
         this.lay = lay;
         this.act = act;
         layoutInflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -73,7 +90,33 @@ public class PuppyView {
         imgMap.put(CustomType.EYE_R,(ImageView) puppyView.findViewById(R.id.img_eye_right));
         imgMap.put(CustomType.EYEBROW_L,(ImageView) puppyView.findViewById(R.id.img_eyebrow_left));
         imgMap.put(CustomType.EYEBROW_R,(ImageView) puppyView.findViewById(R.id.img_eyebrow_right));
+        eyeWL = (ImageView) puppyView.findViewById(R.id.img_eyew_left);
+        eyeWR = (ImageView) puppyView.findViewById(R.id.img_eyew_right);
 
+        puppy.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                w = puppy.getWidth();
+                h = puppy.getHeight();
+                oriS = imgMap.get(CustomType.FACE1).getWidth();
+
+                puppy.setTranslationX(puppy.getX() - w/2);
+                puppy.setTranslationY(puppy.getY() - h/2);
+                puppy.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+
+            }
+        });
+
+        puppy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("t",getCustomJSON());
+            }
+        });
+    }
+    //커스터마이징 화면에서 초기화
+    public void setInitCustom() {
         sourceMap.put(CustomType.FACE1,"https://togaether.cafe24.com/images/custom/img_cus_f1_1.png");
         sourceMap.put(CustomType.FACE2,"https://togaether.cafe24.com/images/custom/img_cus_none.png");
         sourceMap.put(CustomType.FACE3,"https://togaether.cafe24.com/images/custom/img_cus_none.png");
@@ -106,32 +149,69 @@ public class PuppyView {
         colorMap.put(CustomType.EYEBROW_R,Color.parseColor("#6e6e6e"));
         colorMap.put(CustomType.EAR_L,Color.parseColor("#452d00"));
         colorMap.put(CustomType.EAR_R,Color.parseColor("#452d00"));
+        colorMap.put(CustomType.EYE_L,Color.parseColor("#000000"));
+        colorMap.put(CustomType.EYE_R,Color.parseColor("#000000"));
 
         //색상 초기화
         for(CustomType t: CustomType.values()) {
             setColor(t, colorMap.get(t));
         }
-
-        puppy.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+    }
+    //id로 가져와서 초기화
+    public void setInitCustom(int id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://togaether.cafe24.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetrofitPuppy retrofitAPI = retrofit.create(RetrofitPuppy.class);
+        //HashMap<String, Object> input = new HashMap<>();
+        retrofitAPI.getData(id).enqueue(new Callback<PuppyItem>() {
             @Override
-            public void onGlobalLayout() {
-                w = puppy.getWidth();
-                h = puppy.getHeight();
-                oriS = imgMap.get(CustomType.FACE1).getWidth();
-
-                puppy.setTranslationX(puppy.getX() - w/2);
-                puppy.setTranslationY(puppy.getY() - h/2);
-                puppy.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            public void onResponse(Call<PuppyItem> call, Response<PuppyItem> response) {
+                if(response.isSuccessful()) {
+                    PuppyItem data = response.body();
+                    PuppyPartItem partData[] = {data.getEar_l(), data.getEar_r(), data.getEye_l(), data.getEye_r(), data.getEyebrow_l(), data.getEyebrow_r(), data.getFace1(), data.getFace2(), data.getFace3(), data.getMouth(), data.getNose(), data.getBody()};
+                    // EAR_L, EAR_R, EYE_L, EYE_R, EYEBROW_L, EYEBROW_R, FACE1, FACE2, FACE3, MOUTH, NOSE, BODY
+                    int i = 0;
+                    for(CustomType t: CustomType.values()) {
+                        setMap(t, partData[i++]);
+                    }
+                    i = 0;
+                    for(CustomType t: CustomType.values()) {
+                        setCustom(t, partData[i++]);
+                    }
+                }
             }
-        });
 
-        puppy.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Log.e("t",getCustomJSON());
+            public void onFailure(Call<PuppyItem> call, Throwable t) {
+                Log.e("=========OMG","here" + t);
             }
         });
     }
+
+    private void setMap(CustomType t, PuppyPartItem item) {
+        dyMap.put(t,item.getDy());
+        distMap.put(t,-item.getDist());
+        sizeMap.put(t,item.getSize());
+        colorMap.put(t,item.getColor());
+        xyMap.put(t,new PartXY(item.getX(),item.getY()));
+        sourceMap.put(t,item.getSource());
+    }
+
+    private void setCustom(CustomType t, PuppyPartItem item) {
+        if(t!=CustomType.FACE3) {
+            setImgSource(t, item.getSource());
+        }
+        setSize(t, item.getSize());
+        setDy(t, item.getDy());
+        setColor(t, item.getColor());
+        setPartPosition(t);
+        if(t==CustomType.EAR_L || t==CustomType.EYE_L || t==CustomType.EYEBROW_L) {
+            setDist(t, -item.getDist());
+        }
+    }
+
     public void setPosition(int x, int y) {
         puppy.setTranslationX((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, x, act.getResources().getDisplayMetrics()) - w/2); //puppy.findViewById(R.id.lay_puppy).
         puppy.setTranslationY((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, y, act.getResources().getDisplayMetrics()) - h/2);
@@ -173,6 +253,10 @@ public class PuppyView {
         }
         else {
             Glide.with(lay).load(url).into(imgMap.get(type));
+            if (type == CustomType.EYE_L)
+                Glide.with(lay).load(url.replace("eye","eyew")).into(eyeWL);
+            if (type == CustomType.EYE_R)
+                Glide.with(lay).load(url.replace("eye","eyew")).into(eyeWR);
         }
     }
     public void setSize(CustomType type, int size) {
@@ -184,6 +268,12 @@ public class PuppyView {
         targetView.setLayoutParams(newSize);
         sizeMap.put(type, size);
         setPartPosition(type);
+        if (type == CustomType.EYE_L) {
+            eyeWL.setLayoutParams(newSize);
+        }
+        else if (type == CustomType.EYE_R) {
+            eyeWR.setLayoutParams(newSize);
+        }
     }
     public void setCSize(CustomType type, int size) {
         setSize(type, size);
@@ -226,6 +316,13 @@ public class PuppyView {
         ImageView targetView = imgMap.get(type);
         targetView.setTranslationX(xyMap.get(type).getX() + dist - (float)(s - oriS)/2);
         targetView.setTranslationY(xyMap.get(type).getY() + dy - (float)(s - oriS)/2);
+        if(type == CustomType.EYE_L || type == CustomType.EYE_R) {
+            eyeWL.setTranslationX(imgMap.get(CustomType.EYE_L).getX());
+            eyeWL.setTranslationY(imgMap.get(CustomType.EYE_L).getY());
+
+            eyeWR.setTranslationX(imgMap.get(CustomType.EYE_R).getX());
+            eyeWR.setTranslationY(imgMap.get(CustomType.EYE_R).getY());
+        }
     }
     public String getCustomJSON() {
         String jString = "{";

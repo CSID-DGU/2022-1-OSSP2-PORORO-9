@@ -33,9 +33,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragCusDetail extends Fragment {
 
-    PuppyView puppyView;
-    CustomType t, subt;
-    OnSelectionSetListener onSelectionSetListener;
+    private PuppyView puppyView;
+    private CustomType t, subt;
+    private OnSelectionSetListener onSelectionSetListener;
     int selected;
     public FragCusDetail(PuppyView puppyView, CustomType t, int selected) {
         this.puppyView = puppyView;

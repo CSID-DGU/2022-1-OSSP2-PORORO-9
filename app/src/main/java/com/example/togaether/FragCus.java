@@ -53,7 +53,6 @@ public class FragCus extends Fragment implements OnSelectionSetListener{
         View v = inflater.inflate(R.layout.fragcus, container, false);
 
         return v;
-
     }
 
     @Override
