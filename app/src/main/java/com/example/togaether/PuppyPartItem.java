@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 public class PuppyPartItem {
     @SerializedName("source")
     private String source;
-    @SerializedName("x")
-    private float x;
-    @SerializedName("y")
-    private float y;
     @SerializedName("dy")
     private int dy;
     @SerializedName("dist")
@@ -18,22 +14,12 @@ public class PuppyPartItem {
     @SerializedName("color")
     private int color;
 
-    public PuppyPartItem(String source, int x, int y, int dy, int dist, int size, int color) {
+    public PuppyPartItem(String source, int dy, int dist, int size, int color) {
         this.source = source;
-        this.x = x;
-        this.y = y;
         this.dy = dy;
         this.dist = dist;
         this.size = size;
         this.color = color;
-    }
-
-    public void setY(float y) {
-        this.y = y;
-    }
-
-    public void setX(float x) {
-        this.x = x;
     }
 
     public void setColor(int color) {
@@ -70,14 +56,6 @@ public class PuppyPartItem {
 
     public int getSize() {
         return size;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
     }
 
     public String getSource() {

@@ -38,7 +38,7 @@ public class Chatbot extends AppCompatActivity implements BotReply {
     List<Message> messageList = new ArrayList<>();
     EditText editMessage;
     ImageButton btnSend;
-
+    String callString = "엄마";
     //dialogFlow
     private SessionsClient sessionsClient;
     private SessionName sessionName;
@@ -87,7 +87,6 @@ public class Chatbot extends AppCompatActivity implements BotReply {
                     FixedCredentialsProvider.create(credentials)).build();
             sessionsClient = SessionsClient.create(sessionsSettings);
             sessionName = SessionName.of(projectId, uuid);
-
             Log.d(TAG, "projectId : " + projectId);
         } catch (Exception e) {
             Log.d(TAG, "setUpBot: " + e.getMessage());
@@ -103,7 +102,7 @@ public class Chatbot extends AppCompatActivity implements BotReply {
     @Override
     public void callback(DetectIntentResponse returnResponse) {
         if(returnResponse!=null) {
-            String botReply = returnResponse.getQueryResult().getFulfillmentText();
+            String botReply = returnResponse.getQueryResult().getFulfillmentText().replace("[you]", callString);
             if(!botReply.isEmpty()){
                 messageList.add(new Message(botReply, true));
                 chatAdapter.notifyDataSetChanged();

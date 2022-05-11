@@ -60,6 +60,18 @@ public class PuppyView {
     int w, h;
     int oriS;
     ViewGroup lay;
+    boolean isSleep = false;
+
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     PuppyView(ViewGroup lay, AppCompatActivity act) {
         setInit(lay, act);
@@ -78,6 +90,8 @@ public class PuppyView {
         puppyView = (View) layoutInflater.inflate(R.layout.puppy_view, lay, true);
         puppy = puppyView.findViewById(R.id.lay_puppy);
 
+        oriS = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, act.getResources().getDisplayMetrics());
+
         imgMap.put(CustomType.FACE1,(ImageView) puppyView.findViewById(R.id.img_face1));
         imgMap.put(CustomType.FACE2,(ImageView) puppyView.findViewById(R.id.img_face2));
         imgMap.put(CustomType.FACE3,(ImageView) puppyView.findViewById(R.id.img_face3));
@@ -93,17 +107,20 @@ public class PuppyView {
         eyeWL = (ImageView) puppyView.findViewById(R.id.img_eyew_left);
         eyeWR = (ImageView) puppyView.findViewById(R.id.img_eyew_right);
 
+        for(CustomType t: CustomType.values()) {
+            ImageView targetView = imgMap.get(t);
+            xyMap.put(t,new PartXY(targetView.getX(),targetView.getY()));
+        }
+
         puppy.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 w = puppy.getWidth();
                 h = puppy.getHeight();
-                oriS = imgMap.get(CustomType.FACE1).getWidth();
-
+                //oriS = imgMap.get(CustomType.FACE1).getWidth();
                 puppy.setTranslationX(puppy.getX() - w/2);
                 puppy.setTranslationY(puppy.getY() - h/2);
                 puppy.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
 
             }
         });
@@ -112,6 +129,7 @@ public class PuppyView {
             @Override
             public void onClick(View view) {
                 Log.e("t",getCustomJSON());
+                //Log.e("t",imgMap.get(CustomType.FACE1).getWidth()+"");
             }
         });
     }
@@ -195,12 +213,11 @@ public class PuppyView {
         distMap.put(t,-item.getDist());
         sizeMap.put(t,item.getSize());
         colorMap.put(t,item.getColor());
-        xyMap.put(t,new PartXY(item.getX(),item.getY()));
         sourceMap.put(t,item.getSource());
     }
 
     private void setCustom(CustomType t, PuppyPartItem item) {
-        if(t!=CustomType.FACE3) {
+        if(t!=CustomType.FACE3 || (!isSleep && (t==CustomType.EYE_L || t==CustomType.EYE_R))) {
             setImgSource(t, item.getSource());
         }
         setSize(t, item.getSize());
@@ -214,6 +231,9 @@ public class PuppyView {
 
     public void setPosition(int x, int y) {
         puppy.setTranslationX((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, x, act.getResources().getDisplayMetrics()) - w/2); //puppy.findViewById(R.id.lay_puppy).
+        puppy.setTranslationY((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, y, act.getResources().getDisplayMetrics()) - h/2);
+    }
+    public void setPositionY(int y) {
         puppy.setTranslationY((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, y, act.getResources().getDisplayMetrics()) - h/2);
     }
     public void setPositionPX(int x, int y) {
@@ -313,6 +333,7 @@ public class PuppyView {
         int s = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, act.getResources().getDisplayMetrics());
         float dy = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dyMap.get(type), act.getResources().getDisplayMetrics());
         float dist = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, distMap.get(type), act.getResources().getDisplayMetrics());
+
         ImageView targetView = imgMap.get(type);
         targetView.setTranslationX(xyMap.get(type).getX() + dist - (float)(s - oriS)/2);
         targetView.setTranslationY(xyMap.get(type).getY() + dy - (float)(s - oriS)/2);
@@ -330,8 +351,6 @@ public class PuppyView {
             jString += "\"" + t.name() + "\":";
             jString += "{";
             jString += "\"source\":" + "\"" + sourceMap.get(t) + "\",";
-            jString += "\"x\":" + xyMap.get(t).getX() + ",";
-            jString += "\"y\":" + xyMap.get(t).getY() + ",";
             jString += "\"dy\":" + dyMap.get(t) + ",";
             jString += "\"dist\":" + distMap.get(t) + ",";
             jString += "\"size\":" + sizeMap.get(t) + ",";
@@ -341,6 +360,33 @@ public class PuppyView {
         }
         jString += "}";
         return jString;
+    }
+
+    public void setSleep(boolean isSleep){
+        this.isSleep = isSleep;
+        if(isSleep) {
+            setImgSource(CustomType.EYE_L, "http://togaether.cafe24.com/images/custom/img_cus_eye_0_sleep.png");
+            setImgSource(CustomType.EYE_R, "http://togaether.cafe24.com/images/custom/img_cus_eye_0_sleep.png");
+        }
+        else {
+            setImgSource(CustomType.EYE_L, sourceMap.get(CustomType.EYE_L));
+            setImgSource(CustomType.EYE_R, sourceMap.get(CustomType.EYE_R));
+        }
+    }
+
+    public float pxToDp(Context context, float px) {
+
+        // 해상도 마다 다른 density 를 반환. xxxhdpi는 density = 4
+        float density = context.getResources().getDisplayMetrics().density;
+
+        if (density == 1.0)      // mpdi  (160dpi) -- xxxhdpi (density = 4)기준으로 density 값을 재설정 한다
+            density *= 4.0;
+        else if (density == 1.5) // hdpi  (240dpi)
+            density *= (8 / 3);
+        else if (density == 2.0) // xhdpi (320dpi)
+            density *= 2.0;
+
+        return px / density;     // dp 값 반환
     }
 }
 
