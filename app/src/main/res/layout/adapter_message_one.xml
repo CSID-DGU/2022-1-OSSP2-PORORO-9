@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/lay_message_send"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="right">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="오후 1:24"
+            android:id="@+id/tv_message_send_date"
+            style="@style/TEXT_SMALL"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="bottom"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:maxWidth="250dp"
+            android:textColor="@color/black"
+            style="@style/TEXT_UI"
+            android:id="@+id/tv_message_send"
+            android:background="@drawable/bg_chat_send"
+            android:gravity="right"
+            android:layout_gravity="right"
+            >
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/lay_message_receive"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:maxWidth="250dp"
+            android:textColor="@color/black"
+            style="@style/TEXT_UI"
+            android:id="@+id/tv_message_receive"
+            android:background="@drawable/bg_chat_receive"
+            android:gravity="right"
+            android:layout_gravity="right"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="오후 1:24"
+            android:id="@+id/tv_message_receive_date"
+            style="@style/TEXT_SMALL"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+</LinearLayout>
