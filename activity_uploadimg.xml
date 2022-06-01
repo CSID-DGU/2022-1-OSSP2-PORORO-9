@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_uploadimg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".uploadimg">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="CLICK HERE TO SELECT IMAGE FROM GALLERY"
+        android:id="@+id/buttonSelect"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="CLICK HERE TO UPLOAD SELECTED IMAGE ON SERVER "
+        android:id="@+id/buttonUpload"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextImageName"
+        android:layout_above="@+id/buttonUpload"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter Image Name Here"
+        android:gravity="center" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="270dp"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/buttonSelect"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/editTextImageName"/>
+
+</RelativeLayout>
