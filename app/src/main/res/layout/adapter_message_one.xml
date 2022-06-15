@@ -23,7 +23,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="20dp"
             android:maxWidth="250dp"
             android:textColor="@color/black"
             style="@style/TEXT_UI"
@@ -43,7 +46,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
             android:maxWidth="250dp"
             android:textColor="@color/black"
             style="@style/TEXT_UI"

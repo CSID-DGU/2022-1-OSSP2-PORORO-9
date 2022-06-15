@@ -31,14 +31,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Chatbot extends AppCompatActivity implements BotReply {
+public class Chatbot extends TGTActivity implements BotReply {
 
     RecyclerView chatView;
     ChatAdapter chatAdapter;
     List<Message> messageList = new ArrayList<>();
     EditText editMessage;
     ImageButton btnSend;
-    String callString = "엄마";
+    UserData userData;
     //dialogFlow
     private SessionsClient sessionsClient;
     private SessionName sessionName;
@@ -49,6 +49,9 @@ public class Chatbot extends AppCompatActivity implements BotReply {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
+
+        userData = UserData.getInstance();
+
         chatView = findViewById(R.id.chatView);
         editMessage = findViewById(R.id.editMessage);
         btnSend = findViewById(R.id.btnSend);
@@ -102,7 +105,7 @@ public class Chatbot extends AppCompatActivity implements BotReply {
     @Override
     public void callback(DetectIntentResponse returnResponse) {
         if(returnResponse!=null) {
-            String botReply = returnResponse.getQueryResult().getFulfillmentText().replace("[you]", callString);
+            String botReply = returnResponse.getQueryResult().getFulfillmentText().replace("[you]", userData.getCallString());
             if(!botReply.isEmpty()){
                 messageList.add(new Message(botReply, true));
                 chatAdapter.notifyDataSetChanged();

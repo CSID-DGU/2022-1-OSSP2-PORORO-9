@@ -5,7 +5,20 @@
     android:background="@drawable/dialog_back"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:id="@+id/lay_dialog">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/tv_dtitle"
+        android:text="타이틀"
+        android:textColor="@color/blue_d"
+        style="@style/TEXT_UI"
+        android:gravity="center"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

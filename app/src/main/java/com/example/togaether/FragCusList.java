@@ -23,6 +23,7 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,10 +46,9 @@ public class FragCusList extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragcus_list, container, false);
-
         // 서버의 커스텀 아이템들 GridView에 넣기
         GridView listCustom = (GridView) v.findViewById(R.id.list_custom);
-        CustomAdapter customAdapter = new CustomAdapter();
+        CustomAdapter customAdapter = new CustomAdapter(t);
         // HTTP 요청&응답 처리하여 리스트에 추가
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://togaether.cafe24.com")
@@ -79,6 +79,8 @@ public class FragCusList extends Fragment {
         listCustom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Random rand = new Random();
+                SoundPlayer.play(SoundPlayer.SE_ITEM, rand.nextFloat()+0.7F);
                 CustomItem item = customAdapter.getItem(i);
 
                 if(t == CustomType.EYE_L || t == CustomType.EYEBROW_L || t == CustomType.EAR_L ) {

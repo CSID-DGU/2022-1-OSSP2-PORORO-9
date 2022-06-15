@@ -2,7 +2,9 @@ package com.example.togaether;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,9 +36,11 @@ import com.bumptech.glide.request.transition.Transition;
 import com.bumptech.glide.signature.ObjectKey;
 
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import jp.wasabeef.glide.transformations.MaskTransformation;
 import retrofit2.Call;
@@ -47,7 +52,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PuppyView {
     LayoutInflater layoutInflater;
     AppCompatActivity act;
-    View puppyView, puppy;
+    View puppyView, puppy, vShadow, puppyOnly;
+    ProgressBar pgPuppy;
 
     HashMap<CustomType, ImageView> imgMap = new HashMap<>();
     ImageView eyeWL, eyeWR;
@@ -63,49 +69,115 @@ public class PuppyView {
     boolean isSleep = false;
 
 
-    private String name;
+    private String name, callString, sex, uid;
+    private int id;
+    private LocalDate bdate;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDate getBdate() {
+        return bdate;
+    }
+    public void setBdate(LocalDate bdate) {
+        this.bdate = bdate;
+    }
+    public String getCallString() {
+        return callString;
+    }
+    public void setCallString(String callString) {
+        this.callString = callString;
+    }
+    public String getSex() {
+        return sex;
+    }
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    public String getUid() {
+        return uid;
+    }
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
     PuppyView(ViewGroup lay, AppCompatActivity act) {
-        setInit(lay, act);
+        setInit(lay, act, 1);
         setInitCustom();
     }
 
     PuppyView(ViewGroup lay, AppCompatActivity act, int id) {
-        setInit(lay, act);
+        setInit(lay, act, 1);
+        setId(id);
         setInitCustom(id);
     }
 
-    public void setInit(ViewGroup lay, AppCompatActivity act) {
+    PuppyView(ViewGroup lay, AppCompatActivity act, PuppyItem item, float scale) {
+        setInit(lay, act, scale);
+        setInitCustom(item);
+    }
+
+    PuppyView(ViewGroup lay, AppCompatActivity act, PuppyInfoItem item, float scale) {
+        setInit(lay, act, scale);
+        setName(item.getPname());
+        setCallString(item.getPcall());
+        setSex(item.getPsex());
+        setUid(item.getUid());
+        setBdate(item.getPbdate());
+        setId(item.getPid());
+        setInitCustom(item.getPcustom());
+    }
+
+    PuppyView(ViewGroup lay, AppCompatActivity act, PuppyInfoItem item) {
+        this(lay, act, item, 1);
+    }
+
+    PuppyView(ViewGroup lay, AppCompatActivity act, PuppyItem item) {
+        this(lay, act, item, 1);
+    }
+
+
+    public void setInit(ViewGroup lay, AppCompatActivity act, float scale) {
         this.lay = lay;
         this.act = act;
         layoutInflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        puppyView = (View) layoutInflater.inflate(R.layout.puppy_view, lay, true);
+        puppyView = (View) layoutInflater.inflate(R.layout.puppy_view, lay, false);
+        lay.addView(puppyView);
         puppy = puppyView.findViewById(R.id.lay_puppy);
+        puppyOnly = puppy.findViewById(R.id.lay_puppy_only);
+        pgPuppy = puppy.findViewById(R.id.pg_puppy);
+
+        puppy.setScaleX(scale);
+        puppy.setScaleY(scale);
 
         oriS = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, act.getResources().getDisplayMetrics());
 
-        imgMap.put(CustomType.FACE1,(ImageView) puppyView.findViewById(R.id.img_face1));
-        imgMap.put(CustomType.FACE2,(ImageView) puppyView.findViewById(R.id.img_face2));
-        imgMap.put(CustomType.FACE3,(ImageView) puppyView.findViewById(R.id.img_face3));
-        imgMap.put(CustomType.BODY,(ImageView) puppyView.findViewById(R.id.img_body));
-        imgMap.put(CustomType.MOUTH,(ImageView) puppyView.findViewById(R.id.img_mouth));
-        imgMap.put(CustomType.NOSE,(ImageView) puppyView.findViewById(R.id.img_nose));
-        imgMap.put(CustomType.EAR_L,(ImageView) puppyView.findViewById(R.id.img_ear_left));
-        imgMap.put(CustomType.EAR_R,(ImageView) puppyView.findViewById(R.id.img_ear_right));
-        imgMap.put(CustomType.EYE_L,(ImageView) puppyView.findViewById(R.id.img_eye_left));
-        imgMap.put(CustomType.EYE_R,(ImageView) puppyView.findViewById(R.id.img_eye_right));
-        imgMap.put(CustomType.EYEBROW_L,(ImageView) puppyView.findViewById(R.id.img_eyebrow_left));
-        imgMap.put(CustomType.EYEBROW_R,(ImageView) puppyView.findViewById(R.id.img_eyebrow_right));
-        eyeWL = (ImageView) puppyView.findViewById(R.id.img_eyew_left);
-        eyeWR = (ImageView) puppyView.findViewById(R.id.img_eyew_right);
+        imgMap.put(CustomType.FACE1,(ImageView) puppy.findViewById(R.id.img_face1));
+        imgMap.put(CustomType.FACE2,(ImageView) puppy.findViewById(R.id.img_face2));
+        imgMap.put(CustomType.FACE3,(ImageView) puppy.findViewById(R.id.img_face3));
+        imgMap.put(CustomType.BODY,(ImageView) puppy.findViewById(R.id.img_body));
+        imgMap.put(CustomType.MOUTH,(ImageView) puppy.findViewById(R.id.img_mouth));
+        imgMap.put(CustomType.NOSE,(ImageView) puppy.findViewById(R.id.img_nose));
+        imgMap.put(CustomType.EAR_L,(ImageView) puppy.findViewById(R.id.img_ear_left));
+        imgMap.put(CustomType.EAR_R,(ImageView) puppy.findViewById(R.id.img_ear_right));
+        imgMap.put(CustomType.EYE_L,(ImageView) puppy.findViewById(R.id.img_eye_left));
+        imgMap.put(CustomType.EYE_R,(ImageView) puppy.findViewById(R.id.img_eye_right));
+        imgMap.put(CustomType.EYEBROW_L,(ImageView) puppy.findViewById(R.id.img_eyebrow_left));
+        imgMap.put(CustomType.EYEBROW_R,(ImageView) puppy.findViewById(R.id.img_eyebrow_right));
+        vShadow = (View) puppy.findViewById(R.id.v_shadow);
+        eyeWL = (ImageView) puppy.findViewById(R.id.img_eyew_left);
+        eyeWR = (ImageView) puppy.findViewById(R.id.img_eyew_right);
 
         for(CustomType t: CustomType.values()) {
             ImageView targetView = imgMap.get(t);
@@ -120,16 +192,42 @@ public class PuppyView {
                 //oriS = imgMap.get(CustomType.FACE1).getWidth();
                 puppy.setTranslationX(puppy.getX() - w/2);
                 puppy.setTranslationY(puppy.getY() - h/2);
-                puppy.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                puppy.setPivotX((float) w/2);
+                puppy.setPivotY((float) h*3/4);
 
+                final ValueAnimator bubbleAnim = ValueAnimator.ofFloat(-0.25f, 0.25f);
+                bubbleAnim.setDuration(1000);
+                bubbleAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        puppy.setScaleY(puppy.getScaleX()-(float) animation.getAnimatedValue()/20);
+                    }
+                });
+                bubbleAnim.setRepeatCount(-1);
+                bubbleAnim.setRepeatMode(ValueAnimator.REVERSE);
+                bubbleAnim.start();
+
+                puppy.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
 
         puppy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("t",getCustomJSON());
-                //Log.e("t",imgMap.get(CustomType.FACE1).getWidth()+"");
+                Random rand = new Random();
+                Float rate = rand.nextFloat()+0.7F;
+                SoundPlayer.play(SoundPlayer.SE_PET, rate);
+                final ValueAnimator anim = ValueAnimator.ofFloat(-puppy.getScaleX()*0.5f, puppy.getScaleX()*0.5f);
+                anim.setDuration((int)(200/rate));
+                anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        puppy.setScaleY(puppy.getScaleX()-(float) animation.getAnimatedValue()/20);
+                    }
+                });
+                anim.setRepeatCount(2);
+                anim.setRepeatMode(ValueAnimator.REVERSE);
+                anim.start();
             }
         });
     }
@@ -183,31 +281,55 @@ public class PuppyView {
                 .build();
         RetrofitPuppy retrofitAPI = retrofit.create(RetrofitPuppy.class);
         //HashMap<String, Object> input = new HashMap<>();
-        retrofitAPI.getData(id).enqueue(new Callback<PuppyItem>() {
+        retrofitAPI.getData(id).enqueue(new Callback<PuppyInfoItem>() {
             @Override
-            public void onResponse(Call<PuppyItem> call, Response<PuppyItem> response) {
+            public void onResponse(Call<PuppyInfoItem> call, Response<PuppyInfoItem> response) {
                 if(response.isSuccessful()) {
-                    PuppyItem data = response.body();
-                    PuppyPartItem partData[] = {data.getEar_l(), data.getEar_r(), data.getEye_l(), data.getEye_r(), data.getEyebrow_l(), data.getEyebrow_r(), data.getFace1(), data.getFace2(), data.getFace3(), data.getMouth(), data.getNose(), data.getBody()};
-                    // EAR_L, EAR_R, EYE_L, EYE_R, EYEBROW_L, EYEBROW_R, FACE1, FACE2, FACE3, MOUTH, NOSE, BODY
-                    int i = 0;
-                    for(CustomType t: CustomType.values()) {
-                        setMap(t, partData[i++]);
+                    PuppyInfoItem data = response.body();
+                    if(data.getPid() != -1) {
+                        setName(data.getPname());
+                        setCallString(data.getPcall());
+                        setSex(data.getPsex());
+                        setUid(data.getUid());
+                        setBdate(data.getPbdate());
+                        setId(data.getPid());
+                        setInitCustom(data.getPcustom());
                     }
-                    i = 0;
-                    for(CustomType t: CustomType.values()) {
-                        setCustom(t, partData[i++]);
+                    else {
+                        TGTDialog dialog = new TGTDialog(lay.getContext());
+                        dialog.showDialogOneBtn("오류 발생", "정보를 가져오는데 문제가 발생했습니다!", "확인", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(act, PuppyListActivity.class);
+                                act.startActivity(intent);
+                                act.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                act.finish();
+                                dialog.dissmissDailog();
+                            }
+                        });
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<PuppyItem> call, Throwable t) {
+            public void onFailure(Call<PuppyInfoItem> call, Throwable t) {
                 Log.e("=========OMG","here" + t);
             }
         });
     }
-
+    //PuppyItem 받아서 초기화
+    public void setInitCustom(PuppyItem data) {
+        PuppyPartItem partData[] = {data.getEar_l(), data.getEar_r(), data.getEye_l(), data.getEye_r(), data.getEyebrow_l(), data.getEyebrow_r(), data.getFace1(), data.getFace2(), data.getFace3(), data.getMouth(), data.getNose(), data.getBody()};
+        // EAR_L, EAR_R, EYE_L, EYE_R, EYEBROW_L, EYEBROW_R, FACE1, FACE2, FACE3, MOUTH, NOSE, BODY
+        int i = 0;
+        for(CustomType t: CustomType.values()) {
+            setMap(t, partData[i++]);
+        }
+        i = 0;
+        for(CustomType t: CustomType.values()) {
+            setCustom(t, partData[i++]);
+        }
+    }
     private void setMap(CustomType t, PuppyPartItem item) {
         dyMap.put(t,item.getDy());
         distMap.put(t,-item.getDist());
@@ -233,8 +355,15 @@ public class PuppyView {
         puppy.setTranslationX((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, x, act.getResources().getDisplayMetrics()) - w/2); //puppy.findViewById(R.id.lay_puppy).
         puppy.setTranslationY((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, y, act.getResources().getDisplayMetrics()) - h/2);
     }
-    public void setPositionY(int y) {
-        puppy.setTranslationY((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, y, act.getResources().getDisplayMetrics()) - h/2);
+    public void setPositionPXY(int y) {
+        puppy.setTranslationY(y - h/2);
+        Log.e("aa",h+"");
+    }
+    public float getPositionPXX() {
+        return puppy.getX() + w/2;
+    }
+    public float getPositionPXY() {
+        return puppy.getY();
     }
     public void setPositionPX(int x, int y) {
         puppy.setTranslationX(x - w/2);
@@ -247,16 +376,35 @@ public class PuppyView {
     public void setImgSource(CustomType type, String url) {
         sourceMap.put(type, url);
         if(type == CustomType.FACE1) {
+            pgPuppy.setVisibility(View.VISIBLE);
+            puppyOnly.setVisibility(View.GONE);
             Glide.with(lay).load(url)
                     .listener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            pgPuppy.setVisibility(View.GONE);
+                            puppyOnly.setVisibility(View.VISIBLE);
                             return false;
                         }
 
                         @Override
                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                             Glide.with(lay).load(sourceMap.get(CustomType.FACE3))
+                                    .listener(new RequestListener<Drawable>() {
+                                        @Override
+                                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                            pgPuppy.setVisibility(View.GONE);
+                                            puppyOnly.setVisibility(View.VISIBLE);
+                                            return false;
+                                        }
+
+                                        @Override
+                                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                            pgPuppy.setVisibility(View.GONE);
+                                            puppyOnly.setVisibility(View.VISIBLE);
+                                            return false;
+                                        }
+                                    })
                                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                                     .skipMemoryCache(true)
                                     .apply(bitmapTransform(new MultiTransformation<Bitmap>(new CenterCrop(), new MaskTransformation2(resource)))).into(imgMap.get(CustomType.FACE3));
@@ -344,6 +492,11 @@ public class PuppyView {
             eyeWR.setTranslationX(imgMap.get(CustomType.EYE_R).getX());
             eyeWR.setTranslationY(imgMap.get(CustomType.EYE_R).getY());
         }
+
+        if(type == CustomType.BODY) {
+            float _dy = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, act.getResources().getDisplayMetrics());
+            vShadow.setTranslationY(imgMap.get(CustomType.BODY).getY() + _dy);
+        }
     }
     public String getCustomJSON() {
         String jString = "{";
@@ -369,8 +522,8 @@ public class PuppyView {
             setImgSource(CustomType.EYE_R, "http://togaether.cafe24.com/images/custom/img_cus_eye_0_sleep.png");
         }
         else {
-            setImgSource(CustomType.EYE_L, sourceMap.get(CustomType.EYE_L));
-            setImgSource(CustomType.EYE_R, sourceMap.get(CustomType.EYE_R));
+            //setImgSource(CustomType.EYE_L, sourceMap.get(CustomType.EYE_L));
+            //setImgSource(CustomType.EYE_R, sourceMap.get(CustomType.EYE_R));
         }
     }
 

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TOGAETHER</string>
+    <string name="friend_pid">pid</string>
+    <string name="friend_fpid">fpid</string>
+    <string name="friend_name">name</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

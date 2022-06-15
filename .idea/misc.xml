@@ -3,43 +3,73 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable-v24/bg_guest_receive.xml" value="0.234" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.202" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/back_border1.xml" value="0.31" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/back_border_bluew.xml" value="0.2875" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/back_border_gray.xml" value="0.31" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/back_border_line.xml" value="0.3165" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/back_border_menu.xml" value="0.343" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/bg_chat_receive.xml" value="0.1055" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/bg_chat_send.xml" value="0.1055" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/border_outline.xml" value="0.225" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/btn_back_line.xml" value="0.285" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/btn_back_line_white.xml" value="0.249" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/btn_back_solid.xml" value="0.285" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/btn_line_textcolor.xml" value="0.285" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/btn_line_white_textcolor.xml" value="0.249" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/btn_solid_textcolor.xml" value="0.285" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/btn_textcolor.xml" value="0.285" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/bubble_back.xml" value="0.149" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/cir_shadow.xml" value="0.3115" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/dialog_back.xml" value="0.285" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/edt_back.xml" value="0.285" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/edt_back_solid.xml" value="0.285" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/edt_textcolor.xml" value="0.285" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.391" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.465" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.465" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/ic_img_send.xml" value="0.2255" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/ic_launcher_background.xml" value="0.202" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/plan_back.xml" value="0.1055" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/radio_back.xml" value="0.3805" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/radio_selector.xml" value="0.3805" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/radio_textcolor.xml" value="0.3805" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/drawable/tv_back_line.xml" value="0.4365" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_chatbot.xml" value="0.33" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_custom.xml" value="0.37135416666666665" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_diary.xml" value="0.3921875" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_diary_detail.xml" value="0.42617753623188404" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_diary_write.xml" value="0.33" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_guest.xml" value="0.5329566854990584" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_init.xml" value="0.16168478260869565" />
-        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_login.xml" value="0.24322916666666666" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_main.xml" value="0.37616822429906543" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_puppy_list.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/adapter_message_one.xml" value="0.33" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/comment_item.xml" value="0.42617753623188404" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/custom_item.xml" value="0.33" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/dialog_frame_friendlist.xml" value="0.3921875" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/dialog_frame_onebtn.xml" value="0.42391304347826086" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/dialog_frame_twobtn.xml" value="0.256140350877193" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/dialog_frame_visit.xml" value="0.22195121951219512" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/dialog_progress.xml" value="0.33" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/dialog_progress_mini.xml" value="0.4302536231884058" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/diary_item.xml" value="0.5" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/fragcus.xml" value="0.33" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/fragcus_detail.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/fragcus_face1.xml" value="0.3411458333333333" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/fragcus_face2.xml" value="0.3411458333333333" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/fragcus_info.xml" value="0.42391304347826086" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/fragcus_list.xml" value="0.18" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/guest_item.xml" value="0.5163043478260869" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/menu_item.xml" value="0.4076086956521739" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/puppy_view.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/puppyfriendlist_item.xml" value="0.3921875" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/layout/puppylist_item.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.195" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4345" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/xml/custom_item.xml" value="0.3067708333333333" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/xml/network_security_config.xml" value="0.31302083333333336" />
       </map>
