@@ -1,5 +1,6 @@
 # :dog: 투개더
-### 펫로스 중후군을 겪는 사람들을 위한 어플리케이션
+ <img src="https://user-images.githubusercontent.com/101381307/174090671-bf378170-db87-4a0b-91c9-1634626e3d63.png" width="217" height="74"/>  <img src="https://user-images.githubusercontent.com/101381307/174091479-a411d672-2fa6-4e19-a8eb-74337058ad9e.png" width="74" height="74"/>
+### 펫로스 증후군을 겪는 사람들을 위한 작은 쉼터 : TOGAETHER 어플리케이션
 ## 💁 About our team
 > 2022년 1학기 공개SW프로젝트 2분반 9조 뽀로로팀
 > 
@@ -22,20 +23,27 @@
  > <img alt="PHP" src ="https://img.shields.io/badge/PHP-777BB4.svg?&style=for-the-badge&logo=PHP&logoColor=white"/>
  > <img alt="MySQL" src ="https://img.shields.io/badge/MySQL-4479A1.svg?&style=for-the-badge&logo=MySQL&logoColor=white"/>
 
-## 📌 주요 기능 (그림추가)
+## 📌 주요 기능 (아직 수정중!!)
 * 커스터마이징
+
+  <img src="https://user-images.githubusercontent.com/101381307/174093243-20313ce3-6978-4d8e-9f00-6f4096efcb5e.gif" width="427" height="240"/> <img src="https://user-images.githubusercontent.com/101381307/174093977-6723459c-c839-45f7-aaf6-4b71d2e69bfe.gif" width="427" height="240"/>
 
   > 다양한 이미지 소스 중 사용자가 직접 선택하여
   >  
   > 나의 애완동물과 비슷한 애완동물을 만들 수 있습니다
 * 하루 일과
+
+  <img src="https://user-images.githubusercontent.com/101381307/174094529-58c31bf4-1732-48c9-848c-1f060311ea7b.gif" width="427" height="240"/> <img src="https://user-images.githubusercontent.com/101381307/174094493-3c9cb328-c083-41cc-b724-4e281be4f2ac.gif" width="427" height="240"/>
+
   > 사용자가 등록한 애완동물이 무엇을 하고있는지 보여줍니다
 * 대화하기
+
+  <img src="https://user-images.githubusercontent.com/101381307/174095477-0c57258a-2280-46d1-b018-edb4e94c43f7.gif" width="396" height="200"/>
   
   > 강아지와 간단한 대화를 할 수 있습니다
 * 친구 방문
   
-  <img src="https://user-images.githubusercontent.com/101381307/174083124-c9430999-81b2-46cf-b63c-bca79ae1dce4.png" width="427" height="240"/> <img src="https://user-images.githubusercontent.com/101381307/174083559-ff730ec2-4fb2-45e7-b4ee-6b5e0e7f7144.png" width="427" height="240"/>
+  <img src="https://user-images.githubusercontent.com/101381307/174095153-ffdfa00c-782c-4435-85d3-2b7e3ab58d61.gif" width="427" height="240"/> <img src="추가" width="427" height="240"/> 아직.. 아직 수정중..
   
   > 친구로 등록한 강아지들과 교류할 수 있습니다
 * 놀러 가기
