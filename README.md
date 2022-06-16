@@ -23,10 +23,9 @@
  > <img alt="PHP" src ="https://img.shields.io/badge/PHP-777BB4.svg?&style=for-the-badge&logo=PHP&logoColor=white"/>
  > <img alt="MySQL" src ="https://img.shields.io/badge/MySQL-4479A1.svg?&style=for-the-badge&logo=MySQL&logoColor=white"/>
 
-## 📌 주요 기능 (수정중입니다..)
+## 📌 주요 기능 설명
 #### 🎨 커스터마이징
- <img src="https://user-images.githubusercontent.com/101381307/174093243-20313ce3-6978-4d8e-9f00-6f4096efcb5e.gif" width="427" height="240"/> <img src="https://user-images.githubusercontent.com/101381307/174093977-6723459c-c839-45f7-aaf6-4b71d2e69bfe.gif" width="427" height="240"/>
- <img src="https://user-images.githubusercontent.com/101381307/174124122-ba97b883-43e7-457e-8c16-600bef259307.gif" width="427" height="240"/>
+ <img src="https://user-images.githubusercontent.com/101381307/174093243-20313ce3-6978-4d8e-9f00-6f4096efcb5e.gif" width="427" height="240"/> <img src="https://user-images.githubusercontent.com/101381307/174093977-6723459c-c839-45f7-aaf6-4b71d2e69bfe.gif" width="427" height="240"/>               <img src="https://user-images.githubusercontent.com/101381307/174124122-ba97b883-43e7-457e-8c16-600bef259307.gif" width="427" height="240"/>
   > 다양한 이미지 소스 중 사용자가 직접 선택하여 자신의 반려동물과 비슷한 캐릭터를 생성할 수 있습니다
   >  
   > 색상부터 각 소스의 크기, 위치, 간격까지 세밀하게 조절할 수 있어 다양한 캐릭터를 만들 수 있습니다
