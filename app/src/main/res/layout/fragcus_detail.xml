@@ -92,8 +92,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/seek_dy"
-            android:max="5"
-            android:min="-5"
+            android:max="8"
+            android:min="-12"
             android:progress="0"
             android:layout_weight="7"/>
     </LinearLayout>
@@ -117,8 +117,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/seek_dist"
-            android:max="5"
-            android:min="-5"
+            android:max="8"
+            android:min="-8"
             android:progress="0"
             android:layout_weight="7"/>
     </LinearLayout>

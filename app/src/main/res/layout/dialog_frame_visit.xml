@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_back"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:id="@+id/lay_dialog"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/tv_dtitle"
+        android:text="방문 주소"
+        android:textColor="@color/blue_d"
+        style="@style/TEXT_UI"
+        android:gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_marginBottom="10dp">
+        <Spinner
+            android:id="@+id/spin_first"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/spin_mid"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/spin_last"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </Spinner>
+
+        <EditText
+            android:id="@+id/edt_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/TEXT_UI"
+            android:hint="번지"
+            android:textColorHint="@color/blue_dw"
+            android:background="@drawable/edt_back_solid"
+            android:textColor="@drawable/edt_textcolor"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:inputType="numberDecimal"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/TEXT_UI"
+            android:background="@drawable/btn_back_solid"
+            android:textColor="@drawable/btn_solid_textcolor"
+            android:text="검색"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_dvisit"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="3"
+        android:layout_marginBottom="10dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5dp"
+        android:background="#EFEFEF"
+        android:padding="5dp"
+        />
+</LinearLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DiaryWriteActivity"
+    android:weightSum="12"
+    android:padding="10dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="다이어리 작성"
+        android:textColor="@color/black"
+        style="@style/TEXT_UI_TITLE"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="6"
+        android:paddingBottom="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/TEXT_UI"
+            android:text="제목"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/edt_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            style="@style/TEXT_UI"
+            android:textColor="@drawable/edt_textcolor"
+            android:background="@drawable/edt_back_solid"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="5"
+        android:weightSum="6"
+        android:paddingBottom="10dp" >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/TEXT_UI"
+            android:text="내용"
+            android:gravity="center"/>
+        <EditText
+            android:id="@+id/edt_content"
+            android:gravity="top"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            style="@style/TEXT_UI"
+            android:inputType="textMultiLine"
+            android:textColor="@drawable/edt_textcolor"
+            android:background="@drawable/edt_back_solid"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="3"
+        android:weightSum="6"
+        android:paddingBottom="10dp" >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/TEXT_UI"
+            android:text="사진"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/img_diary"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:inputType="textLongMessage"
+            android:textColor="@drawable/edt_textcolor"
+            android:background="@drawable/edt_back_solid"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="6"
+        android:paddingBottom="10dp" >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/TEXT_UI"
+            android:text="공개"
+            android:gravity="center"/>
+        <RadioGroup
+            android:id="@+id/lay_diary_private"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radio_diary_private"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_back"
+                android:button="@null"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:checked="true"
+                android:text="비공개"
+                android:textColor="@drawable/radio_textcolor" />
+            <RadioButton
+                android:id="@+id/radio_diary_public"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radio_back"
+                android:button="@null"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:text="공개"
+                android:textColor="@drawable/radio_textcolor" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        style="@style/TEXT_UI"
+        android:textColor="@drawable/btn_solid_textcolor"
+        android:background="@drawable/btn_back_solid"
+        android:text="다이어리 업로드"/>
+</LinearLayout>

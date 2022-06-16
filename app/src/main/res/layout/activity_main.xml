@@ -51,6 +51,21 @@
             android:paddingRight="10dp"
             tools:ignore="MissingConstraints" />
 
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btn_follow"-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="따라가 볼래!"-->
+<!--            style="@style/TEXT_UI"-->
+<!--            android:background="@drawable/btn_back_solid"-->
+<!--            android:textColor="@drawable/btn_solid_textcolor"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            />-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

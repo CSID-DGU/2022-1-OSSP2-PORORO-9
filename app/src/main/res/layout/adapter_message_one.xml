@@ -55,7 +55,7 @@
             style="@style/TEXT_UI"
             android:id="@+id/tv_message_receive"
             android:background="@drawable/bg_chat_receive"
-            android:gravity="right"
+            android:gravity="left"
             android:layout_gravity="right"
             >
         </TextView>

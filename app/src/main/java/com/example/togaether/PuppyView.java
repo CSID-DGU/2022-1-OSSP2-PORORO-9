@@ -115,6 +115,7 @@ public class PuppyView {
     PuppyView(ViewGroup lay, AppCompatActivity act) {
         setInit(lay, act, 1);
         setInitCustom();
+        pgPuppy.setVisibility(View.GONE);
     }
 
     PuppyView(ViewGroup lay, AppCompatActivity act, int id) {
@@ -355,9 +356,13 @@ public class PuppyView {
         puppy.setTranslationX((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, x, act.getResources().getDisplayMetrics()) - w/2); //puppy.findViewById(R.id.lay_puppy).
         puppy.setTranslationY((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, y, act.getResources().getDisplayMetrics()) - h/2);
     }
-    public void setPositionPXY(int y) {
-        puppy.setTranslationY(y - h/2);
-        Log.e("aa",h+"");
+    public void setPositionPXX(float x) {
+        float x60 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, act.getResources().getDisplayMetrics());
+        puppy.setTranslationX(x - x60);
+    }
+    public void setPositionPXY(float y) {
+        float y142 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 142.5f, act.getResources().getDisplayMetrics());
+        puppy.setTranslationY(y - y142);
     }
     public float getPositionPXX() {
         return puppy.getX() + w/2;
@@ -484,7 +489,12 @@ public class PuppyView {
 
         ImageView targetView = imgMap.get(type);
         targetView.setTranslationX(xyMap.get(type).getX() + dist - (float)(s - oriS)/2);
-        targetView.setTranslationY(xyMap.get(type).getY() + dy - (float)(s - oriS)/2);
+
+        float tempYCenter;
+        if(type == CustomType.BODY) { tempYCenter = (float)(s - oriS)*3/4; }
+        else { tempYCenter = (float)(s - oriS)/2; }
+
+        targetView.setTranslationY(xyMap.get(type).getY() + dy - tempYCenter);
         if(type == CustomType.EYE_L || type == CustomType.EYE_R) {
             eyeWL.setTranslationX(imgMap.get(CustomType.EYE_L).getX());
             eyeWL.setTranslationY(imgMap.get(CustomType.EYE_L).getY());
@@ -495,7 +505,7 @@ public class PuppyView {
 
         if(type == CustomType.BODY) {
             float _dy = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, act.getResources().getDisplayMetrics());
-            vShadow.setTranslationY(imgMap.get(CustomType.BODY).getY() + _dy);
+            vShadow.setTranslationY(imgMap.get(CustomType.BODY).getY() + tempYCenter + _dy);
         }
     }
     public String getCustomJSON() {

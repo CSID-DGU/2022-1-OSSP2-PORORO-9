@@ -59,6 +59,9 @@ public class FragCusDetail extends Fragment {
             layCSize.setVisibility(View.GONE);
             layCDy.setVisibility(View.GONE);
         }
+        else if(t == CustomType.BODY) {
+            layCDy.setVisibility(View.GONE);
+        }
         else if(t == CustomType.EYE_L || t == CustomType.EYEBROW_L || t == CustomType.EAR_L ) {
             subt = CustomType.valueOf(t.name().substring(0,t.name().length()-1)+"R");
             layCSel.setVisibility(View.VISIBLE);

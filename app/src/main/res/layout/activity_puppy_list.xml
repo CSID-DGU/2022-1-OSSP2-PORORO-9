@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/turq_d"
+    tools:context=".PuppyListActivity"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="500dp"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:weightSum="10"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="누굴 만나러 갈까요?"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+        <ListView
+            android:id="@+id/list_puppy"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7.5"
+            android:paddingBottom="10dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_empty"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7.5"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="아직 등록된 아이가 없습니다!"
+            android:textColor="@color/blue_w" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_newpuppy"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:text="새로운 아이 등록하기"
+            style="@style/TEXT_UI"
+            android:background="@drawable/btn_back_solid"
+            android:textColor="@drawable/btn_solid_textcolor"/>
+    </LinearLayout>
+</LinearLayout>

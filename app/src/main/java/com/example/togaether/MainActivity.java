@@ -13,13 +13,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -53,6 +58,7 @@ public class MainActivity extends TGTActivity {
     ImageView imgFront;
     TextView tvDoing, tvSaying;
     Button btnMenu;
+    AppCompatButton btnFollow;
     PuppyView puppyView;
     ListView listMenu;
     private Schedule schedule;
@@ -134,6 +140,8 @@ public class MainActivity extends TGTActivity {
         tvIuname = (TextView) findViewById(R.id.tv_iuname);
         tvIfriend = (TextView) findViewById(R.id.tv_ifriend);
         btnIfriend = (AppCompatButton) findViewById(R.id.btn_ifriend);
+        //visit
+        //btnFollow = (AppCompatButton) findViewById(R.id.btn_follow);
 
         layMain.setBackground(GlobalSelector.getSkyGradient(LocalTime.now()));
 
@@ -183,7 +191,7 @@ public class MainActivity extends TGTActivity {
             imgBack.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    puppyView.setPositionPX(imgBack.getWidth() / 2, imgBack.getHeight() * 4 / 5);
+                    //puppyView.setPositionPX(imgBack.getWidth() / 2, imgBack.getHeight() * 4 / 5);
                     imgBack.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
                     getPlanInfo(schedule.getPlan()); //schedule.getPlan()
@@ -203,6 +211,14 @@ public class MainActivity extends TGTActivity {
             tvDoing.setText(GlobalSelector.getPostWord(puppyView.getName(),"은") + " 지금 " + GlobalSelector.getPostWord(puppyInfoItem.getVname(),"를 만나러 갔어요!"));
             tvSaying.setVisibility(View.GONE);
             loadingDialog.loadingComplete();
+
+//            btnFollow.setVisibility(View.VISIBLE);
+//            btnFollow.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                }
+//            });
         }
 
         //메뉴 구성
@@ -217,7 +233,7 @@ public class MainActivity extends TGTActivity {
         }
         else {
             menuAdapter.addItem(new MenuItem("다이어리", GlobalSelector.getPostWord(puppyView.getName(),"와") + "의 추억을 확인해보세요!", R.drawable.img_menu_diary, 3));
-            menuAdapter.addItem(new MenuItem("방명록", puppyView.getName() + "에게 응원의 메세지를 남겨볼까요?", R.drawable.img_menu_guest, 102));
+            menuAdapter.addItem(new MenuItem("방명록", puppyView.getName() + "에게 응원의 메세지를 남겨볼까요?", R.drawable.img_menu_guest, 4));
         }
 
         listMenu.setAdapter(menuAdapter);
@@ -373,9 +389,11 @@ public class MainActivity extends TGTActivity {
                         currentPlan = data;
                         Glide.with(getApplicationContext()).load("http://togaether.cafe24.com/images/back/" + data.getBack()).centerCrop().into(imgBack);
                         Glide.with(getApplicationContext()).load("http://togaether.cafe24.com/images/back/" + data.getFront()).centerCrop().into(imgFront);
+                        //Glide.with(getApplicationContext()).load(R.drawable.img_back_test).centerCrop().into(imgFront);
 
                         //int y = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, data.getY(), getResources().getDisplayMetrics());
-                        setPuppyY((float) data.getY());
+
+                        setPuppyXY(puppyView, 0, (float) data.getY());
 
                         setBubble();
 
@@ -405,11 +423,20 @@ public class MainActivity extends TGTActivity {
             String front = sp.getFront();
             String name = sp.getName();
             currentPlan = new PlanItem(planId, name, back, front, _y, say);
-            setPuppyY((float)_y);
             puppyView.setSleep(false);
+
+            puppyView.puppy.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    setPuppyXY(puppyView, 0, (float)_y);
+
+                    puppyView.puppy.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+            });
 
             Glide.with(getApplicationContext()).load("http://togaether.cafe24.com/images/back/" + back).centerCrop().into(imgBack);
             Glide.with(getApplicationContext()).load("http://togaether.cafe24.com/images/back/" + front).centerCrop().into(imgFront);
+            //Glide.with(getApplicationContext()).load(R.drawable.img_back_test).centerCrop().into(imgFront);
 
             RetrofitPuppy retrofitAPI = retrofit.create(RetrofitPuppy.class);
             HashMap<String, Object> input = new HashMap<>();
@@ -439,9 +466,17 @@ public class MainActivity extends TGTActivity {
                         visitPuppyView.puppy.setOnClickListener(createInfoClick(data));
                     }
 
-                    int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, x[i], getResources().getDisplayMetrics());
-                    int py = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, y[i], getResources().getDisplayMetrics());
-                    visitPuppyView.setPositionPX((int)puppyView.getPositionPXX() + px,(int)puppyView.getPositionPXY() +  py + puppyView.puppy.getHeight()/2);
+                    //int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, x[i], getResources().getDisplayMetrics());
+                    //int py = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, y[i], getResources().getDisplayMetrics());
+                    //visitPuppyView.setPositionPX((int)puppyView.getPositionPXX() + px,(int)puppyView.getPositionPXY() +  py + puppyView.puppy.getHeight()/2);
+                    visitPuppyView.puppy.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            setPuppyXY(visitPuppyView, (float)x[i], (float)y[i]);
+
+                            visitPuppyView.puppy.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
+                    });
                     //텍스트 수정
                     if(i == puppyNum - 1) {
                         if(i == 0) {
@@ -472,12 +507,20 @@ public class MainActivity extends TGTActivity {
         tvSaying.setTranslationY(puppyView.getPositionPXY() - tvSaying.getMeasuredHeight() - 10);
     }
 
-    private void setPuppyY(float py) {
+    private void setPuppyXY(PuppyView target, float px, float py) {
         DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
-        int screenHeight = metrics.heightPixels;
-        int y = (int) (screenHeight / 2 * py / 100);
-        puppyView.setPositionPXY((int)(screenHeight / 2 + y));
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        //상단바 크기 구하기
+        int statusBarHeight = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+
+        int screenHeight = metrics.heightPixels - statusBarHeight;
+        int screenWidth = metrics.widthPixels;
+        float x = screenWidth / 2 + ((float)screenHeight/200 * px);
+        float y = screenHeight / 2 + ((float)screenHeight / 2 * py / 100);
+        target.setPositionPXX(x);
+        target.setPositionPXY(y);
     }
 
     private View.OnClickListener createInfoClick(PuppyInfoItem puppyInfoItem) {
