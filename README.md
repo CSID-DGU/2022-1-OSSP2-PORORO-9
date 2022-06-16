@@ -33,8 +33,17 @@
 * 대화하기
   > 강아지와 간단한 대화를 할 수 있습니다
 * 친구 방문
+  
+  <img src="https://user-images.githubusercontent.com/101381307/174083124-c9430999-81b2-46cf-b63c-bca79ae1dce4.png" width="427" height="240"/> <img src="https://user-images.githubusercontent.com/101381307/174083559-ff730ec2-4fb2-45e7-b4ee-6b5e0e7f7144.png" width="427" height="240"/>
+  
   > 친구로 등록한 강아지들과 교류할 수 있습니다
 * 놀러 가기
+
+  <img src="https://user-images.githubusercontent.com/101381307/174083581-4dd04cfb-7b51-4d0e-b339-49da9e8c4e7e.png" width="427" height="240"/>
+  
   > 다른 유저의 강아지를 보여주고 방명록을 남길 수 있습니다
 * 일기 쓰기
+
+  <img src="https://user-images.githubusercontent.com/101381307/174083617-85468531-fe6d-44d0-913e-e42a8629468c.png" width="250" height="444"/> <img src="https://user-images.githubusercontent.com/101381307/174083704-d3987f61-2042-44bc-99cc-26636f6597a5.png" width="250" height="444"/>
+  
   >  나의 애완동물에게 일기를 남길 수 있습니다
