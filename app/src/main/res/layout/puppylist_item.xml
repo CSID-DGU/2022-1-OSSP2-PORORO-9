@@ -79,6 +79,7 @@
                 android:layout_marginTop="5dp"
                 style="@style/TEXT_UI"
                 android:layout_weight="1"
+                android:visibility="gone"
                 android:textColor="@drawable/btn_line_textcolor"
                 android:background="@drawable/btn_back_line"/>
         </LinearLayout>

@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -103,24 +105,25 @@ public class PuppyView {
         this.name = name;
     }
 
-    PuppyView(ViewGroup lay, AppCompatActivity act) {
+    public PuppyView(ViewGroup lay, AppCompatActivity act) {
         setInit(lay, act, 1);
         setInitCustom();
         pgPuppy.setVisibility(View.GONE);
     }
 
-    PuppyView(ViewGroup lay, AppCompatActivity act, int id) {
+    public PuppyView(ViewGroup lay, AppCompatActivity act, int id) {
         setInit(lay, act, 1);
         setId(id);
         setInitCustom(id);
     }
 
-    PuppyView(ViewGroup lay, AppCompatActivity act, PuppyItem item, float scale) {
+    public PuppyView(ViewGroup lay, AppCompatActivity act, PuppyItem item, float scale) {
         setInit(lay, act, scale);
         setInitCustom(item);
     }
 
-    PuppyView(ViewGroup lay, AppCompatActivity act, PuppyInfoItem item, float scale) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public PuppyView(ViewGroup lay, AppCompatActivity act, PuppyInfoItem item, float scale) {
         setInit(lay, act, scale);
         setName(item.getPname());
         setCallString(item.getPcall());
@@ -131,11 +134,12 @@ public class PuppyView {
         setInitCustom(item.getPcustom());
     }
 
-    PuppyView(ViewGroup lay, AppCompatActivity act, PuppyInfoItem item) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public PuppyView(ViewGroup lay, AppCompatActivity act, PuppyInfoItem item) {
         this(lay, act, item, 1);
     }
 
-    PuppyView(ViewGroup lay, AppCompatActivity act, PuppyItem item) {
+    public PuppyView(ViewGroup lay, AppCompatActivity act, PuppyItem item) {
         this(lay, act, item, 1);
     }
 
@@ -267,12 +271,13 @@ public class PuppyView {
     //id로 가져와서 초기화
     public void setInitCustom(int id) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://togaether.cafe24.com")
+                .baseUrl("https://togaether.cafe24.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RetrofitPuppy retrofitAPI = retrofit.create(RetrofitPuppy.class);
         //HashMap<String, Object> input = new HashMap<>();
         retrofitAPI.getData(id).enqueue(new Callback<PuppyInfoItem>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<PuppyInfoItem> call, Response<PuppyInfoItem> response) {
                 if(response.isSuccessful()) {
