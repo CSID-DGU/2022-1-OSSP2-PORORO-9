@@ -72,6 +72,9 @@
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4345" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/xml/custom_item.xml" value="0.3067708333333333" />
         <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/app/src/main/res/xml/network_security_config.xml" value="0.31302083333333336" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/togaetherLib/src/main/res/drawable/cir_shadow.xml" value="0.2865" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/togaetherLib/src/main/res/layout/activity_sample.xml" value="0.28229166666666666" />
+        <entry key="..\:/Users/Yul2/AndroidStudioProjects/TOGAETHER/togaetherLib/src/main/res/layout/puppy_view.xml" value="0.28229166666666666" />
       </map>
     </option>
   </component>
