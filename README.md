@@ -64,7 +64,7 @@
   > 방문한 집의 캐릭터와 유저에게 방명록을 남길수도 있습니다
 
 #### 📖 일기 쓰기
- <img src="https://user-images.githubusercontent.com/101381307/174083704-d3987f61-2042-44bc-99cc-26636f6597a5.png" width="250" height="444"/>  <img src="https://user-images.githubusercontent.com/101381307/174087462-d1889406-0dfd-443f-9809-4a89dea8105a.png" width="250" height="444"/>
+ <img src="https://user-images.githubusercontent.com/101381307/174083704-d3987f61-2042-44bc-99cc-26636f6597a5.png" width="250" height="444"/>   <img src="https://user-images.githubusercontent.com/101381307/174087462-d1889406-0dfd-443f-9809-4a89dea8105a.png" width="250" height="444"/>
   > 유저만의 개인적인 공간에 간단한 일기를 남길 수 있습니다
   > 
   > 유저가 자유롭게 자신의 반려견을 추억 혹은 추모할 수 있는 공간이 되기도 합니다
